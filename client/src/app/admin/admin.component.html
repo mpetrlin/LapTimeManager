@@ -1,4 +1,4 @@
-<div class="container w-50">
+<div class="container w-75">
 
     <div class="mt-2">
         <h3>To be approved or deleted</h3>
@@ -6,16 +6,24 @@
 
     <table class="table table-hover text-dark">
       <tr class="fw-bold">
-          <td>Position</td>
+          <td>Table Id</td>
           <td>First name</td>
           <td>Last name</td>
           <td>Laptime (HH:mm:ss:SSS)</td>
+          <td>Approve</td>
+          <td>Delete</td>
       </tr>  
-      <tr *ngFor="let time of unappTimes; index as i">
-        <td>{{i+1}}.</td>
+      <tr *ngFor="let time of unappTimes">
+        <td>{{time.id}}</td>
         <td>{{time.firstName}}</td>
         <td>{{time.lastName}}</td>
         <td>{{time.time | date: "HH:mm:ss:SSS"}}</td>
+        <td>
+          <button class="btn btn-success p-1 btn-block" type="button">Approve</button>
+        </td>
+        <td>
+          <button class="btn btn-primary p-1" type="button">Delete</button>
+        </td>
       </tr>
     </table>
 
@@ -26,15 +34,21 @@
         <table class="table table-hover text-dark">
           <tr class="fw-bold">
               <td>Position</td>
+              <td>Table Id</td>
               <td>First name</td>
               <td>Last name</td>
               <td>Laptime (HH:mm:ss:SSS)</td>
+              <td>Delete</td>
           </tr>  
           <tr *ngFor="let time of topTimes; index as i">
             <td>{{i+1}}.</td>
+            <td>{{time.id}}</td>
             <td>{{time.firstName}}</td>
             <td>{{time.lastName}}</td>
             <td>{{time.time | date: "HH:mm:ss:SSS"}}</td>
+            <td>
+              <button class="btn btn-primary p-1" type="button">Delete</button>
+            </td>
           </tr>
         </table>
         </div>

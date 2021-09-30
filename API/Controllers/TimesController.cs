@@ -48,5 +48,26 @@ namespace API.Controllers
 
             return time;
         }
+
+        [HttpPut]
+        public async Task<ActionResult> ApproveTime(int timeId)
+        {
+            var entity = _context.AllTimes.Where(x => x.Id == timeId).FirstOrDefault();
+            entity.IsApproved = true;
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteTime(int timeId)
+        {
+            _context.AllTimes.RemoveRange(_context.AllTimes.Where(x => x.Id == timeId).FirstOrDefault());
+            
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
     }
 }
