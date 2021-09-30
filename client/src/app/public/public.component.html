@@ -1,0 +1,35 @@
+<div class="container w-75">
+    <form class="form-inline mt-2 justify-content-center" autocomplete="off">
+                    
+                <div class="form-group">
+                    <input name="firstName" class="form-control" type="string" min="3" placeholder="First name">
+                </div>
+                <div class="form-group ml-2">
+                    <input name="lastName" class="form-control" type="string" min="3" placeholder="Last name">
+                </div>
+                <div class="form-group ml-2">
+                    <input name="lapTime" class="form-control" type="time" step="0.001">
+                </div>
+             
+                <button class="btn btn-primary ml-4" type="submit">Submit laptime</button>            
+    </form>
+  </div>
+
+  <p class="p-4"></p>
+
+<div class="container w-50">
+    <table class="table table-hover text-dark">
+      <tr class="fw-bold">
+          <td>Position</td>
+          <td>First name</td>
+          <td>Last name</td>
+          <td>Laptime (HH:mm:ss:SSS)</td>
+      </tr>  
+      <tr *ngFor="let time of topTimes; index as i">
+        <td>{{i+1}}.</td>
+        <td>{{time.firstName}}</td>
+        <td>{{time.lastName}}</td>
+        <td>{{time.time | date: "HH:mm:ss:SSS"}}</td>
+      </tr>
+    </table>
+    </div>
