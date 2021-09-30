@@ -17,4 +17,8 @@ export class DataService {
   getUnappTimes() {
     return this.http.get(this.baseUrl + "getunapproved");
   }
+
+  postNewTime(model: any) {
+    return this.http.post(this.baseUrl + "addnew", model);
+  }
 }

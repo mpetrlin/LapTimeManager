@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../_services/data.service';
 
 @Component({
@@ -8,8 +8,10 @@ import { DataService } from '../_services/data.service';
 })
 export class PublicComponent implements OnInit {
   topTimes: any;
-
+  
   constructor(private dataService: DataService) { }
+
+  @Input() newTime: any = {}
 
   ngOnInit(): void {
     this.getTopTimes();
@@ -22,4 +24,11 @@ export class PublicComponent implements OnInit {
       console.log(error);
     })
   }
+
+  postNewTime() {
+    this.dataService.postNewTime(this.newTime).subscribe(response => {
+      console.log(response)}, error => {
+        console.log(error);
+      })
+    }
 }

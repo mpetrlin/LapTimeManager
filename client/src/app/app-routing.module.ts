@@ -7,7 +7,7 @@ import { PublicComponent } from './public/public.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'public', component: PublicComponent},
-  {path: 'admin', component: AdminComponent},
+  {path: 'administration', component: AdminComponent},
   {path: '**', component: HomeComponent, pathMatch: 'full'},
 ];
 
