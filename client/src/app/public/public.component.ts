@@ -8,10 +8,11 @@ import { DataService } from '../_services/data.service';
 })
 export class PublicComponent implements OnInit {
   topTimes: any;
+  newTime: any = {};
   
   constructor(private dataService: DataService) { }
 
-  @Input() newTime: any = {}
+  @Input() inputTime: any = {};
 
   ngOnInit(): void {
     this.getTopTimes();
@@ -25,10 +26,23 @@ export class PublicComponent implements OnInit {
     })
   }
 
+  convertTime() {
+    this.newTime.firstName = this.inputTime.firstName;
+    this.newTime.lastName = this.inputTime.lastName;
+    this.newTime.hours = (this.inputTime.hours<10) ? "0"+this.inputTime.hours : this.inputTime.hours;
+    this.newTime.minutes = (this.inputTime.minutes<10) ? "0"+this.inputTime.minutes : this.inputTime.minutes;
+    this.newTime.seconds = (this.inputTime.seconds<10) ? "0"+this.inputTime.seconds : this.inputTime.seconds;
+    this.newTime.milliseconds = (this.inputTime.milliseconds<10) ? "00"+this.inputTime.milliseconds : 
+      (this.inputTime.seconds<100) ? "0"+this.inputTime.milliseconds : this.inputTime.milliseconds;
+    this.newTime.time = this.newTime.hours + ":" + this.newTime.minutes + ":" + this.newTime.seconds + "." + this.newTime.milliseconds;
+  }
+
   postNewTime() {
+    this.convertTime();
     this.dataService.postNewTime(this.newTime).subscribe(response => {
       console.log(response), 
-      alert("Laptime successfully submitted!\nIt will be visible in the top times table, after admin approval.")}, 
+      alert("Laptime successfully submitted!\nIt will be visible in the Top times table, after admin approval."),
+      window.location.reload();}, 
       error => {console.log(error),
         alert("An unexpected error has occurred!\nPlease recheck the input fields and try again!");
       })
