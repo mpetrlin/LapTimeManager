@@ -49,7 +49,7 @@ namespace API.Controllers
             return time;
         }
 
-        [HttpPut]
+        [HttpPatch("approve/{timeId}")]
         public async Task<ActionResult> ApproveTime(int timeId)
         {
             var entity = _context.AllTimes.Where(x => x.Id == timeId).FirstOrDefault();
@@ -60,7 +60,7 @@ namespace API.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("delete/{timeId}")]
         public async Task<ActionResult> DeleteTime(int timeId)
         {
             _context.AllTimes.RemoveRange(_context.AllTimes.Where(x => x.Id == timeId).FirstOrDefault());

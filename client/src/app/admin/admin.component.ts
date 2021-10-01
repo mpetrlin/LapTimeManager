@@ -34,4 +34,22 @@ export class AdminComponent implements OnInit {
     })
   }
 
+  deleteTime(id: number) {
+    if (confirm("Are you sure you want to delete the time with table ID: " + id.toString())) {
+      this.dataService.deleteTime(id).subscribe(response => {
+        console.log(response), this.getUnappTimes(), this.getTopTimes();
+      }, error => {
+        console.log(error);
+      })
+    }
+  }
+
+  approveTime(id: number) {
+    this.dataService.approveTime(id).subscribe(response => {
+      console.log(response), this.getUnappTimes(), this.getTopTimes();
+    }, error => {
+        console.log(error);
+      })
+    }
+
 }

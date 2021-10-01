@@ -1,7 +1,8 @@
 <div class="container w-75">
 
-    <div class="mt-2">
+    <div class="d-flex mt-2">
         <h3>To be approved or deleted</h3>
+        <button class="btn btn-info ml-4 mb-3" routerLink='/public' type="button">Go to public view</button>
     </div>
 
     <table class="table table-hover text-dark">
@@ -19,15 +20,15 @@
         <td>{{time.lastName}}</td>
         <td>{{time.time | date: "HH:mm:ss:SSS"}}</td>
         <td>
-          <button class="btn btn-success p-1 btn-block" type="button">Approve</button>
+          <button class="btn btn-success p-1 btn-block" (click)="approveTime(time.id)" type="button">Approve</button>
         </td>
         <td>
-          <button class="btn btn-primary p-1" type="button">Delete</button>
+          <button class="btn btn-primary p-1" (click)="deleteTime(time.id)" type="button">Delete</button>
         </td>
       </tr>
     </table>
 
-    <div class="mt-4">
+    <div class="mt-4 mb-3">
         <h2>Approved top times</h2>
     </div>
 
@@ -47,7 +48,7 @@
             <td>{{time.lastName}}</td>
             <td>{{time.time | date: "HH:mm:ss:SSS"}}</td>
             <td>
-              <button class="btn btn-primary p-1" type="button">Delete</button>
+              <button class="btn btn-primary p-1" (click)="deleteTime(time.id)" type="button">Delete</button>
             </td>
           </tr>
         </table>

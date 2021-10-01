@@ -21,4 +21,12 @@ export class DataService {
   postNewTime(model: any) {
     return this.http.post(this.baseUrl + "addnew", model);
   }
+
+  deleteTime(id: number){
+    return this.http.delete(this.baseUrl + "delete/" + id);
+  }
+
+  approveTime(id: number){
+    return this.http.patch(this.baseUrl + "approve/" + id, []);
+  }
 }

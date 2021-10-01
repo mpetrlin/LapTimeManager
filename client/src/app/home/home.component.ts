@@ -18,7 +18,8 @@ export class HomeComponent implements OnInit {
 
   login() : void {
     if (this.username === "admin" && this.password === "supersecretpassword") {
-      this.router.navigateByUrl("administration", {skipLocationChange: true});
-    }
+      this.router.navigateByUrl("administration", {skipLocationChange: true})
+    } 
+      else alert("You haven't entered correct admin credentials!\nPlease try again.");    
   }
 }

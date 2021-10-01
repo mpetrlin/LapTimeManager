@@ -18,7 +18,10 @@
   <p class="p-4"></p>
 
 <div class="container w-50">
-    <h2>Top times</h2>
+  <div class="d-flex mt-2">
+    <h3>Top times</h3>
+    <button class="btn btn-outline-dark ml-4 mb-3" routerLink='/' type="button">Go to admin view</button>
+</div>
     <table class="table table-hover text-dark">
       <tr class="fw-bold">
           <td>Position</td>
@@ -27,7 +30,7 @@
           <td>Laptime (HH:mm:ss:SSS)</td>
       </tr>  
       <tr *ngFor="let time of topTimes; index as i">
-        <td>{{i+1}}.</td>
+        <td class="fw-bold">{{i+1}}.</td>
         <td>{{time.firstName}}</td>
         <td>{{time.lastName}}</td>
         <td>{{time.time | date: "HH:mm:ss:SSS"}}</td>
