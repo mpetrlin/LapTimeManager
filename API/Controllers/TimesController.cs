@@ -23,13 +23,15 @@ namespace API.Controllers
         [HttpGet("getapproved")]
         public async Task<ActionResult<IEnumerable<ReportedTime>>> GetApprovedTimes()
         {
-            return await _context.AllTimes.OrderBy(x => x.Time).Where(x => x.IsApproved == true).ToListAsync();
+            return await _context.AllTimes.OrderBy(x => x.Time)
+                .Where(x => x.IsApproved == true).ToListAsync();
         }
 
         [HttpGet("getunapproved")]
         public async Task<ActionResult<IEnumerable<ReportedTime>>> GetUnapprovedTimes()
         {
-            return await _context.AllTimes.OrderBy(x => x.Id).Where(x => x.IsApproved != true).ToListAsync();
+            return await _context.AllTimes.OrderBy(x => x.Id)
+                .Where(x => x.IsApproved != true).ToListAsync();
         }
 
         [HttpPost("addnew")]
@@ -50,24 +52,25 @@ namespace API.Controllers
         }
 
         [HttpPatch("approve/{timeId}")]
-        public async Task<ActionResult> ApproveTime(int timeId)
+        public async Task<ActionResult<ReportedTime>> ApproveTime(int timeId)
         {
             var entity = _context.AllTimes.Where(x => x.Id == timeId).FirstOrDefault();
             entity.IsApproved = true;
 
             await _context.SaveChangesAsync();
 
-            return Ok();
+            return entity;
         }
 
         [HttpDelete("delete/{timeId}")]
-        public async Task<ActionResult> DeleteTime(int timeId)
+        public async Task<ActionResult<ReportedTime>> DeleteTime(int timeId)
         {
-            _context.AllTimes.RemoveRange(_context.AllTimes.Where(x => x.Id == timeId).FirstOrDefault());
+            var entity = new ReportedTime { Id = timeId };
+            _context.Entry(entity).State = EntityState.Deleted;
             
             await _context.SaveChangesAsync();
 
-            return Ok();
+            return entity;
         }
     }
 }

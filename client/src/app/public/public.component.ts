@@ -33,7 +33,7 @@ export class PublicComponent implements OnInit {
     this.newTime.minutes = (this.inputTime.minutes<10) ? "0"+this.inputTime.minutes : this.inputTime.minutes;
     this.newTime.seconds = (this.inputTime.seconds<10) ? "0"+this.inputTime.seconds : this.inputTime.seconds;
     this.newTime.milliseconds = (this.inputTime.milliseconds<10) ? "00"+this.inputTime.milliseconds : 
-      (this.inputTime.seconds<100) ? "0"+this.inputTime.milliseconds : this.inputTime.milliseconds;
+      (this.inputTime.milliseconds<100) ? "0"+this.inputTime.milliseconds : this.inputTime.milliseconds;
     this.newTime.time = this.newTime.hours + ":" + this.newTime.minutes + ":" + this.newTime.seconds + "." + this.newTime.milliseconds;
   }
 
